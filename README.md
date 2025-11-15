@@ -10,7 +10,6 @@ Another issue was **I had no clear division between domains**
 
 Don't get me wrong, I don't want to decouple domain and framework here (because I don't think it's worth it), I'm just saying that with a monolith I can't even see if a Banking domain change affects Contract domain because **in the whole ball of mud, everything was together**.
 
-
 ## Architecture 
 
 I will use Maven module feature for this project and add some alternatives I considered in this README.md. 
@@ -48,3 +47,17 @@ quarkus.hibernate-orm."billing".packages=com.joseiedo.billing
 ```
 
 The app will even break if someone try to use entities of another persistence unit. Read more [here](https://pt.quarkus.io/guides/hibernate-orm#multiple-persistence-units)
+
+## How to run?
+
+1. Install Maven and Docker (it's used for the database connection).
+2. Install modules to make them available in your local maven repository (necessary so other models can find each other):
+```bash
+mvn install
+```
+3. Play around. 
+```bash
+mvn verify # You can see maven reactor showing all modules
+mvn quarkus:dev -pl billing # will run only billing module
+mvn quarkus:dev -pl application # will run application module
+```
