@@ -1,6 +1,9 @@
+package com.joseiedo.billing;
+
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
+import com.joseiedo.user.UserService;
 
 @ApplicationScoped
 @Path("/billing")

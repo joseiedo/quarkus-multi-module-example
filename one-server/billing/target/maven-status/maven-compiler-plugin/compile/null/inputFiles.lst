@@ -1,3 +1,3 @@
-/Users/iedo/Study/modulith-example/one-server/billing/src/main/java/BillingService.java
-/Users/iedo/Study/modulith-example/one-server/billing/src/main/java/BillingServiceImpl.java
-/Users/iedo/Study/modulith-example/one-server/billing/src/main/java/HealthController.java
+/Users/iedo/Study/modulith-example/one-server/billing/src/main/java/com/joseiedo/billing/BillingService.java
+/Users/iedo/Study/modulith-example/one-server/billing/src/main/java/com/joseiedo/billing/BillingServiceImpl.java
+/Users/iedo/Study/modulith-example/one-server/billing/src/main/java/com/joseiedo/billing/HealthController.java

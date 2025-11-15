@@ -1,3 +1,5 @@
+package com.joseiedo.billing;
+
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped

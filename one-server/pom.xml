@@ -9,7 +9,7 @@
 	<version>1.0.0-ALPHA</version>
 
 	<modules>
-		<!-- Name of each module artifact :) -->	
+		<!-- Name of each module artifact :) -->
 		<module>billing</module>
 		<module>user</module>
 	</modules>
@@ -25,6 +25,51 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>io.quarkus</groupId>
+					<artifactId>quarkus-maven-plugin</artifactId>
+					<version>3.29.3</version>
+					<executions>
+						<execution>
+							<goals>
+								<!-- 
+								Quarkus, unlike Spring, performs many tasks at build time instead of runtime.
+								This plugin binding allows Maven to run Quarkus goals automatically during the Maven lifecycle.
+								The quarkus-maven-plugin internally defines which goal should be executed in which Maven phase.
+							-->
+								<goal>build</goal>
+								<goal>generate-code</goal>
+								<goal>generate-code-tests</goal>
+								<goal>native-image-agent</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+
+				<!-- This plugin is necessary to make CDI beans of this module
+				     visible to another modules for Quarkus ArC
+			             https://pt.quarkus.io/guides/cdi-reference#bean_discovery
+			-->
+				<plugin>
+					<groupId>io.smallrye</groupId>
+					<artifactId>jandex-maven-plugin</artifactId>
+					<version>3.5.1</version>
+					<executions>
+						<execution>
+							<id>make-index</id>
+							<goals>
+								<goal>jandex</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 
 	<!-- Parent POMs must have packaging = POM -->
 	<packaging>pom</packaging>

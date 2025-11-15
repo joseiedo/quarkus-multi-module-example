@@ -20,7 +20,6 @@
 			<artifactId>user</artifactId>
 			<version>1.0.0-ALPHA</version>
 		</dependency>
-
 		<dependency>
 			<groupId>io.quarkus</groupId>
 			<artifactId>quarkus-arc</artifactId>
@@ -36,22 +35,11 @@
 			<plugin>
 				<groupId>io.quarkus</groupId>
 				<artifactId>quarkus-maven-plugin</artifactId>
-				<version>3.29.3</version>
-				<executions>
-					<execution>
-						<goals>
-							<!-- 
-								Quarkus, unlike Spring, performs many tasks at build time instead of runtime.
-								This plugin binding allows Maven to run Quarkus goals automatically during the Maven lifecycle.
-								The quarkus-maven-plugin internally defines which goal should be executed in which Maven phase.
-							-->
-							<goal>build</goal>
-							<goal>generate-code</goal>
-							<goal>generate-code-tests</goal>
-							<goal>native-image-agent</goal>
-						</goals>
-					</execution>
-				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>io.smallrye</groupId>
+				<artifactId>jandex-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>

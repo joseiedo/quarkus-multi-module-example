@@ -1,3 +1,5 @@
+package com.joseiedo.user;
+
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
