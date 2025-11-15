@@ -1,30 +1,32 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<!-- Every module must have this POM as the "parent" -->
-	<groupId>com.joseiedo</groupId>
-	<artifactId>parent</artifactId>
-	<version>1.0.0-ALPHA</version>
+    <!-- Every module must have this POM as the "parent" -->
+    <groupId>com.joseiedo</groupId>
+    <artifactId>parent</artifactId>
+    <version>1.0.0-ALPHA</version>
 
-	<modules>
-		<!-- Name of each module artifact :) -->
+    <modules>
+        <!-- Name of each module artifact :) -->
         <module>application</module>
-		<module>billing</module>
+        <module>billing</module>
         <module>streaming</module>
-		<module>user</module>
-	</modules>
+        <module>user</module>
+    </modules>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>io.quarkus</groupId>
-				<artifactId>quarkus-bom</artifactId>
-				<version>3.29.3</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.quarkus</groupId>
+                <artifactId>quarkus-bom</artifactId>
+                <version>3.29.3</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- modules -->
             <dependency>
                 <groupId>com.joseiedo</groupId>
                 <artifactId>user</artifactId>
@@ -40,55 +42,56 @@
                 <artifactId>streaming</artifactId>
                 <version>1.0.0-ALPHA</version>
             </dependency>
-		</dependencies>
-	</dependencyManagement>
 
-	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>io.quarkus</groupId>
-					<artifactId>quarkus-maven-plugin</artifactId>
-					<version>3.29.3</version>
-					<executions>
-						<execution>
-							<goals>
-								<!-- 
-								Quarkus, unlike Spring, performs many tasks at build time instead of runtime.
-								This plugin binding allows Maven to run Quarkus goals automatically during the Maven lifecycle.
-								The quarkus-maven-plugin internally defines which goal should be executed in which Maven phase.
-							-->
-								<goal>build</goal>
-								<goal>generate-code</goal>
-								<goal>generate-code-tests</goal>
-								<goal>native-image-agent</goal>
-							</goals>
-						</execution>
-					</executions>
-				</plugin>
+        </dependencies>
+    </dependencyManagement>
 
-				<!-- This plugin is necessary to make CDI beans of this module
-				     visible to another modules for Quarkus ArC
-			             https://pt.quarkus.io/guides/cdi-reference#bean_discovery
-			-->
-				<plugin>
-					<groupId>io.smallrye</groupId>
-					<artifactId>jandex-maven-plugin</artifactId>
-					<version>3.5.1</version>
-					<executions>
-						<execution>
-							<id>make-index</id>
-							<goals>
-								<goal>jandex</goal>
-							</goals>
-						</execution>
-					</executions>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-	</build>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>io.quarkus</groupId>
+                    <artifactId>quarkus-maven-plugin</artifactId>
+                    <version>3.29.3</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <!--
+                                Quarkus, unlike Spring, performs many tasks at build time instead of runtime.
+                                This plugin binding allows Maven to run Quarkus goals automatically during the Maven lifecycle.
+                                The quarkus-maven-plugin internally defines which goal should be executed in which Maven phase.
+                            -->
+                                <goal>build</goal>
+                                <goal>generate-code</goal>
+                                <goal>generate-code-tests</goal>
+                                <goal>native-image-agent</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
 
-	<!-- Parent POMs must have packaging = POM -->
-	<packaging>pom</packaging>
+                <!-- This plugin is necessary to make CDI beans of this module
+                     visible to another modules for Quarkus ArC
+                         https://pt.quarkus.io/guides/cdi-reference#bean_discovery
+            -->
+                <plugin>
+                    <groupId>io.smallrye</groupId>
+                    <artifactId>jandex-maven-plugin</artifactId>
+                    <version>3.5.1</version>
+                    <executions>
+                        <execution>
+                            <id>make-index</id>
+                            <goals>
+                                <goal>jandex</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <!-- Parent POMs must have packaging = POM -->
+    <packaging>pom</packaging>
 
 </project>

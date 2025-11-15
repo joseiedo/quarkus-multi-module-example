@@ -8,7 +8,7 @@ Because after I had the experience of developing in a big monolith ~400K LoC usi
 The **main issue** was that I had to run the full app everytime, even when I only wanted to test 1 feature of a very small domain. This results in a slower startup.
 Another issue was **I had no clear division between domains**
 
-Don't get me wrong, I don't want to decouple domain and framework here (because I don't think it's worth it), I'm just saying that with a monolith I can't even see if a Banking domain affected Contract domain because **in the whole ball of mud, everything was together**.
+Don't get me wrong, I don't want to decouple domain and framework here (because I don't think it's worth it), I'm just saying that with a monolith I can't even see if a Banking domain change affects Contract domain because **in the whole ball of mud, everything was together**.
 
 
 ## Architecture 
@@ -30,3 +30,21 @@ mvn -pl <module>
 mvn -pl billing
 mvn -pl application 
 ```
+
+### Database-per-module approach
+
+Thanks to the beautiful Quarkus/Hibernate integration, it's a matter of updating the application.properties of each module and use Persistence Units:
+
+```properties
+# just follow the pattern
+quarkus.datasource."module".property=
+
+# e.g.
+quarkus.datasource."billing".jdbc.url=source...
+quarkus.datasource."billing".db-kind=postgresql
+quarkus.hibernate-orm."billing".schema-management.strategy=update
+quarkus.hibernate-orm."billing".datasource=billing
+quarkus.hibernate-orm."billing".packages=com.joseiedo.billing
+```
+
+The app will even break if someone try to use entities of another persistence unit. Read more [here](https://pt.quarkus.io/guides/hibernate-orm#multiple-persistence-units)
