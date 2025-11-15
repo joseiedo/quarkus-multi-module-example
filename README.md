@@ -1,11 +1,11 @@
-# Modulith Example (testing)
+# Simple Multi-module example
 
-The goal of this project is to present a way to write a multi-module monolith.
+The goal of this project is to present a way to write a simple multi-module monolith.
 
 ## Why multi-module monolith?
 
 Because after I had the experience of developing in a big monolith ~400K LoC using the default technical layered architecture (controllers, service, mappers, model, repositories) I had some issues. 
-The **main issue** was that I had to run the full app everytime, even when I only wanted to test 1 feature of a very small domain. This results in a slower startup.
+The **main issue** was that I had to run the full app everytime, even when I only wanted to test 1 feature of a very small domain. This results in a slower startup and tests.
 Another issue was **I had no clear division between domains**
 
 Don't get me wrong, I don't want to decouple domain and framework here (because I don't think it's worth it), I'm just saying that with a monolith I can't even see if a Banking domain change affects Contract domain because **in the whole ball of mud, everything was together**.
