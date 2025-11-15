@@ -14,19 +14,13 @@
 		<version>1.0.0-ALPHA</version>
 	</parent>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>io.quarkus</groupId>
-				<artifactId>quarkus-bom</artifactId>
-				<version>3.29.3</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
-
 	<dependencies>
+		<dependency>
+			<groupId>com.joseiedo</groupId>
+			<artifactId>user</artifactId>
+			<version>1.0.0-ALPHA</version>
+		</dependency>
+
 		<dependency>
 			<groupId>io.quarkus</groupId>
 			<artifactId>quarkus-arc</artifactId>
@@ -46,10 +40,15 @@
 				<executions>
 					<execution>
 						<goals>
+							<!-- 
+								Quarkus, unlike Spring, performs many tasks at build time instead of runtime.
+								This plugin binding allows Maven to run Quarkus goals automatically during the Maven lifecycle.
+								The quarkus-maven-plugin internally defines which goal should be executed in which Maven phase.
+							-->
 							<goal>build</goal>
-							<!-- <goal>generate-code</goal> -->
-							<!-- <goal>generate-code-tests</goal> -->
-							<!-- <goal>native-image-agent</goal> -->
+							<goal>generate-code</goal>
+							<goal>generate-code-tests</goal>
+							<goal>native-image-agent</goal>
 						</goals>
 					</execution>
 				</executions>

@@ -1,0 +1,70 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.joseiedo</groupId>
+	<artifactId>user</artifactId>
+	<version>1.0.0-ALPHA</version>
+
+
+	<parent>
+		<groupId>com.joseiedo</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.0.0-ALPHA</version>
+	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>io.quarkus</groupId>
+			<artifactId>quarkus-arc</artifactId>
+		</dependency>
+		<!-- <dependency> -->
+		<!-- 	<groupId>io.quarkus</groupId> -->
+		<!-- 	<artifactId>quarkus-rest</artifactId> -->
+		<!-- </dependency> -->
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>io.quarkus</groupId>
+				<artifactId>quarkus-maven-plugin</artifactId>
+				<version>3.29.3</version>
+				<executions>
+					<execution>
+						<goals>
+							<!-- 
+								Quarkus, unlike Spring, performs many tasks at build time instead of runtime.
+								This plugin binding allows Maven to run Quarkus goals automatically during the Maven lifecycle.
+								The quarkus-maven-plugin internally defines which goal should be executed in which Maven phase.
+							-->
+							<goal>build</goal>
+							<goal>generate-code</goal>
+							<goal>generate-code-tests</goal>
+							<goal>native-image-agent</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- This plugin is necessary to make CDI beans of this module visible to another modules for Quarkus ArC
+			https://pt.quarkus.io/guides/cdi-reference#bean_discovery
+			-->
+			<plugin>
+				<groupId>io.smallrye</groupId>
+				<artifactId>jandex-maven-plugin</artifactId>
+				<version>3.5.1</version>
+				<executions>
+					<execution>
+						<id>make-index</id>
+						<goals>
+							<goal>jandex</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

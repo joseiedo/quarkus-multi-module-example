@@ -11,7 +11,20 @@
 	<modules>
 		<!-- Name of each module artifact :) -->	
 		<module>billing</module>
+		<module>user</module>
 	</modules>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>io.quarkus</groupId>
+				<artifactId>quarkus-bom</artifactId>
+				<version>3.29.3</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<!-- Parent POMs must have packaging = POM -->
 	<packaging>pom</packaging>
