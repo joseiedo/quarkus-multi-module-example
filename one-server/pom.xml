@@ -10,7 +10,9 @@
 
 	<modules>
 		<!-- Name of each module artifact :) -->
+        <module>application</module>
 		<module>billing</module>
+        <module>streaming</module>
 		<module>user</module>
 	</modules>
 
@@ -23,6 +25,21 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+            <dependency>
+                <groupId>com.joseiedo</groupId>
+                <artifactId>user</artifactId>
+                <version>1.0.0-ALPHA</version>
+            </dependency>
+            <dependency>
+                <groupId>com.joseiedo</groupId>
+                <artifactId>billing</artifactId>
+                <version>1.0.0-ALPHA</version>
+            </dependency>
+            <dependency>
+                <groupId>com.joseiedo</groupId>
+                <artifactId>streaming</artifactId>
+                <version>1.0.0-ALPHA</version>
+            </dependency>
 		</dependencies>
 	</dependencyManagement>
 
