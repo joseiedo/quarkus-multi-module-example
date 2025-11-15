@@ -1,4 +1,4 @@
-# Simple Multi-module example
+# Quarkus Multi Module Example
 
 The goal of this project is to present a way to write a simple multi-module monolith.
 
@@ -61,3 +61,9 @@ mvn verify # You can see maven reactor showing all modules
 mvn quarkus:dev -pl billing # will run only billing module
 mvn quarkus:dev -pl application # will run application module
 ```
+
+## Notes
+
+- Remember to run mvn install **before** building your native image/final jar of the application module to ensure all modules are in the maven repository.
+- IDEs like intellij need to be configured. In the worst case, just use the terminal and create a **Makefile** to simplify everyone's life.
+- Learn maven
